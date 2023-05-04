@@ -1,4 +1,4 @@
-# [Project Euler Solutions](https://projecteuler.net/archives)
+# [Project Euler](https://projecteuler.net/archives) Solutions
 
 Just (was) solving problems from [Project Euler Archive](https://projecteuler.net/archives).
 
