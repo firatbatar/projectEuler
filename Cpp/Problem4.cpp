@@ -5,40 +5,35 @@
 using namespace std;
 using namespace std::chrono;
 
-bool isPrime(int num) {
-    static vector<int> primes = {2};
+bool isPalindrome(int num) {
+    string numStr = to_string(num);
 
-    bool is_prime = true;
-    for (int prime : primes) {
-        if (prime > sqrt(num)) break;
+    int startIdx = 0;
+    int endIdx = numStr.size() - 1;
+    while (startIdx < endIdx) {
+        if (numStr.at(startIdx) != numStr.at(endIdx)) return false;
 
-        if (num % prime == 0) {
-            is_prime = false;
-            break;
-        }
+        startIdx++;
+        endIdx--;
     }
 
-    if (is_prime) {
-        primes.push_back(num);
-    }
-
-    return is_prime;
+    return true;
 }
 
 int main() {
     // Timer
     auto start = high_resolution_clock::now();
-
-    int answer = 1;
     
-    int limit = 20;
-    for (int num = 2; num <= limit; num++) {
-        if (isPrime(num)) {
-            int mult = 1;
-            while (mult * num <= limit) mult *= num;
-            answer *= (mult);
-        }
-    }
+    int answer = -1;
+
+    for (int i = 100; i < 1000; i++) {
+        for (int j = 100; j < 1000; j++) {
+            int product = i * j;
+            if (isPalindrome(product)) {
+                if (product > answer) answer = product;
+            }
+        } 
+    }    
 
     auto duration = duration_cast<microseconds>(high_resolution_clock::now() - start).count();
 
