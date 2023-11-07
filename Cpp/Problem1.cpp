@@ -1,12 +1,11 @@
-#include <iostream>
 #include <chrono>
+#include <iostream>
 using namespace std;
 using namespace std::chrono;
 
 int main() {
     // Timer
     auto start = high_resolution_clock::now();
-
 
     int limit = 1000;
     unsigned int sum = 0;
@@ -15,7 +14,6 @@ int main() {
             sum += num;
         }
     }
-
 
     auto duration = duration_cast<microseconds>(high_resolution_clock::now() - start).count();
 

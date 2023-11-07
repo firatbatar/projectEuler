@@ -1,7 +1,7 @@
-#include <iostream>
-#include <vector>
 #include <chrono>
 #include <cmath>
+#include <iostream>
+#include <vector>
 using namespace std;
 using namespace std::chrono;
 
@@ -23,7 +23,7 @@ bool isPalindrome(int num) {
 int main() {
     // Timer
     auto start = high_resolution_clock::now();
-    
+
     int answer = -1;
 
     for (int i = 100; i < 1000; i++) {
@@ -32,8 +32,8 @@ int main() {
             if (isPalindrome(product)) {
                 if (product > answer) answer = product;
             }
-        } 
-    }    
+        }
+    }
 
     auto duration = duration_cast<microseconds>(high_resolution_clock::now() - start).count();
 

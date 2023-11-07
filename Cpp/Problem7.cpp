@@ -1,7 +1,7 @@
-#include <iostream>
-#include <vector>
 #include <chrono>
 #include <cmath>
+#include <iostream>
+#include <vector>
 using namespace std;
 using namespace std::chrono;
 
@@ -30,7 +30,7 @@ int main() {
     auto start = high_resolution_clock::now();
 
     int answer = 1;
-    
+
     int limit = 10001;
     int count = 0;
     int num = 2;
