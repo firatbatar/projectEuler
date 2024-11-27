@@ -13,6 +13,6 @@ int main() {
 
     auto duration = duration_cast<microseconds>(high_resolution_clock::now() - start).count();
 
-    cout << "Found " << answer << " in " << duration << " miliseconds." << endl;
+    cout << "Found " << answer << " in " << duration << " microseconds." << endl;
     return 0;
 }
