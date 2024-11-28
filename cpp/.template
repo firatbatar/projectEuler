@@ -5,11 +5,11 @@
 
 using namespace std;
 
+typedef unsigned long long int int8;
+
 /*
 Problem #
 */
-
-typedef unsigned long long int int8;
 
 int8 solution() {
     int8 answer = 0;
