@@ -4,12 +4,12 @@
 using namespace std;
 using namespace std::chrono;
 
-extern unsigned long long int solution();
+extern long double solution();
 
 int main() {
     auto start = high_resolution_clock::now();
 
-    unsigned long long int answer = solution();
+    long double answer = solution();
 
     auto duration = duration_cast<microseconds>(high_resolution_clock::now() - start).count();
 

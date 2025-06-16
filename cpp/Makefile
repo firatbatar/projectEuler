@@ -4,9 +4,9 @@ CFLAGS := -Wall
 all:
 # Empty
 
-.PHONY: cpp cpp/%.cpp clean
+.PHONY: problems/%.cpp clean
 
-%: cpp/%.cpp cpp/main.cpp
+%: problems/%.cpp main.cpp
 	@$(GCC) $(CFLAGS) -o $@.out $^
 
 create:

@@ -3,16 +3,15 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 typedef unsigned long long int int8;
+typedef long double float16;
 
 /*
 Problem #
 */
 
-int8 solution() {
-    int8 answer = 0;
+float16 solution() {
+  float16 answer = 0;
 
-    return answer;
+  return answer;
 }
