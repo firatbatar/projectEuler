@@ -10,8 +10,8 @@ all:
 	@$(GCC) $(CFLAGS) -o $@.out $^
 
 create:
-	@cp cpp/.template cpp/$(name).cpp
-	@echo "Created cpp/$(name).cpp"
+	@cp .template problems/$(name).cpp
+	@echo "Created problems/$(name).cpp"
 
 clean:
 	@rm -f *.out
