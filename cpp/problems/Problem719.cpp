@@ -1,84 +1,92 @@
+#include <AbstractSolution.h>
 #include <cmath>
+#include <cstdint>
+#include <iostream>
 #include <string>
 #include <vector>
-#include <iostream>
-
-using namespace std;
 
 /*
 Problem #719 - Number Splitting
 */
 
-typedef unsigned long long int ulli;
+class Problem719 : public AbstractSolution {
+ private:
+  std::vector<std::vector<std::uint64_t>> findPartition(
+      std::uint64_t n, std::vector<std::vector<std::vector<std::uint64_t>>> &partitions) {
+    if (partitions.size() >= n + 1) return partitions[n];
 
+    std::vector<std::vector<std::uint64_t>> partition;
 
-vector<vector<ulli>> findPartition(ulli n, vector<vector<vector<ulli>>> &partitions) {
-    if (partitions.size() >= n + 1) return partitions[n]; 
+    for (std::uint64_t i = 1; i <= n; i++) {
+      std::vector<std::vector<std::uint64_t>> subPartitions = findPartition(n - i, partitions);
 
-    vector<vector<ulli>> partition;
-
-    for (ulli i = 1; i <= n; i++) {
-        vector<vector<ulli>> subPartitions = findPartition(n - i, partitions);
-
-        for (ulli j = 0; j < subPartitions.size(); j++) {
-            vector<ulli> newPartition = subPartitions[j];
-            newPartition.push_back(i);
-            partition.push_back(newPartition);
-        }
+      for (std::uint64_t j = 0; j < subPartitions.size(); j++) {
+        std::vector<std::uint64_t> newPartition = subPartitions[j];
+        newPartition.push_back(i);
+        partition.push_back(newPartition);
+      }
     }
 
     partitions.push_back(partition);
     return partition;
-}
+  }
 
-bool digitPartitionSums(ulli n, vector<vector<ulli>> &partition, ulli target) {
-    for (ulli i = 0; i < partition.size(); i++) {
-        vector<ulli> p = partition[i];
-        if (p.size() <= 1) continue;
+  bool digitPartitionSums(std::uint64_t n, std::vector<std::vector<std::uint64_t>> &partition,
+                          std::uint64_t target) {
+    for (std::uint64_t i = 0; i < partition.size(); i++) {
+      std::vector<std::uint64_t> p = partition[i];
+      if (p.size() <= 1) continue;
 
-        string s = to_string(n);
-        ulli sum = 0ull;
+      std::string s = std::to_string(n);
+      std::uint64_t sum = 0ull;
 
-        for (ulli j = 0; j < p.size(); j++) {
-            ulli start = j == 0 ? 0 : p[j - 1];
-            ulli length = p[j];
+      for (std::uint64_t j = 0; j < p.size(); j++) {
+        std::uint64_t start = j == 0 ? 0 : p[j - 1];
+        std::uint64_t length = p[j];
 
-            string sub = s.substr(start, length);
-            sum += stoull(sub);
+        std::string sub = s.substr(start, length);
+        sum += stoull(sub);
 
-            p[j] += start;
-        }
+        p[j] += start;
+      }
 
-        if (sum == target) return true;
+      if (sum == target) return true;
     }
 
     return false;
-}
+  }
 
+ public:
+  virtual std::string getProblemName() { return "Problem #719 - Number Splitting"; }
 
-unsigned long long int solution() {
-    const ulli N_exp = 12; // N = 10^N_exp
-    const ulli sqrtN = pow(10, N_exp / 2);
+  virtual std::uint64_t solveProblem() {
+    const std::uint64_t N_exp = 12;  // N = 10^N_exp
+    const std::uint64_t sqrtN = pow(10, N_exp / 2);
 
-    ulli answer = 0ull;
+    std::uint64_t answer = 0ull;
 
-    vector<vector<vector<ulli>>> partitions = { { {} } };
+    std::vector<std::vector<std::vector<std::uint64_t>>> partitions = {{{}}};
 
-    for (ulli i = 1; i <= sqrtN; i++) {
-        ulli n = i * i;
-    
-        if (n % 9 != 0 && n % 9 != 1) continue;
+    for (std::uint64_t i = 1; i <= sqrtN; i++) {
+      std::uint64_t n = i * i;
 
-        int digitCount = log10(n) + 1;  
+      if (n % 9 != 0 && n % 9 != 1) continue;
 
-        vector<vector<ulli>> partition = findPartition(digitCount, partitions);
+      int digitCount = log10(n) + 1;
 
-        bool found = digitPartitionSums(n, partition, i);
-    
-        if (found) {
-            cout << "Found: " << n << endl;
-            answer += n;
-        }
-    } 
+      std::vector<std::vector<std::uint64_t>> partition = findPartition(digitCount, partitions);
+
+      bool found = digitPartitionSums(n, partition, i);
+
+      if (found) {
+        std::cout << "Found: " << n << std::endl;
+        answer += n;
+      }
+    }
     return answer;
-}
+  }
+};
+
+AbstractSolution *solution = new Problem719();
+
+#include "../main.cpp"

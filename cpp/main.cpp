@@ -1,18 +1,19 @@
+#include <AbstractSolution.h>
 #include <chrono>
 #include <iostream>
 
 using namespace std;
 using namespace std::chrono;
 
-extern long double solution();
+extern AbstractSolution *solution;
 
 int main() {
-    auto start = high_resolution_clock::now();
+  auto start = high_resolution_clock::now();
 
-    long double answer = solution();
+  long double answer = solution->solveProblem();
 
-    auto duration = duration_cast<microseconds>(high_resolution_clock::now() - start).count();
+  auto duration = duration_cast<microseconds>(high_resolution_clock::now() - start).count();
 
-    cout << "Found " << answer << " in " << duration << " microseconds." << endl;
-    return 0;
+  cout << "Solved " << solution->getProblemName() << " as " << answer << " in " << duration << " microseconds." << endl;
+  return 0;
 }
