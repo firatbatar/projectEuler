@@ -14,6 +14,6 @@ int main() {
 
   auto duration = duration_cast<microseconds>(high_resolution_clock::now() - start).count();
 
-  cout << "Solved " << solution->getProblemName() << " as " << answer << " in " << duration << " microseconds." << endl;
+  cout << "Solved '" << solution->getProblemName() << "' as " << answer << " in " << duration << " microseconds." << endl;
   return 0;
 }
