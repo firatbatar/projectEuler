@@ -7,7 +7,7 @@ all:
 .PHONY: problems/%.cpp clean
 
 %: problems/%.cpp
-	$(GCC) $(CFLAGS) -o $@.out $^
+	@$(GCC) $(CFLAGS) -o $@.out $^
 
 clean:
 	@rm -f *.out
